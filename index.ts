@@ -18,3 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+class Person {
+    // プロパティの宣言
+    name: string;
+    age: number;
+
+    // コンストラクタメソッド
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // メソッド
+    introduce() {
+        console.log(`こんにちは、私は${this.name}です。年齢は${this.age}歳です。`);
+    }
+}
+
