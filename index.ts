@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }else if(operation === "divide") {
                 result = num1 / num2;
             }
-            resultParagraph.textContent = `結果あああ: ${result}`;
+            resultParagraph.textContent = `結果: ${result}`;
         } else {
             resultParagraph.textContent = "有効な数値を入力してください";
         }
