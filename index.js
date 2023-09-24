@@ -1,14 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
     var num1Input = document.getElementById("num1");
     var num2Input = document.getElementById("num2");
-    var calculateButton = document.getElementById("calculateButton");
+    var addButton = document.getElementById("addButton");
+    var multiButton = document.getElementById("multiButton");
     var resultParagraph = document.getElementById("result");
-    calculateButton === null || calculateButton === void 0 ? void 0 : calculateButton.addEventListener("click", function () {
+    addButton === null || addButton === void 0 ? void 0 : addButton.addEventListener("click", function () {
         var num1 = parseFloat(num1Input.value);
         var num2 = parseFloat(num2Input.value);
         if (!isNaN(num1) && !isNaN(num2)) {
             var sum = num1 + num2;
-            resultParagraph.textContent = "\u7D50\u679C: ".concat(sum);
+            resultParagraph.textContent = "\u7D50\u679C\u3042\u3042\u3042: ".concat(sum);
+        }
+        else {
+            resultParagraph.textContent = "有効な数値を入力してください";
+        }
+    });
+    multiButton === null || multiButton === void 0 ? void 0 : multiButton.addEventListener("click", function () {
+        var num1 = parseFloat(num1Input.value);
+        var num2 = parseFloat(num2Input.value);
+        if (!isNaN(num1) && !isNaN(num2)) {
+            var sum = num1 * num2;
+            resultParagraph.textContent = "\u7D50\u679C\u3042\u3042\u3042: ".concat(sum);
         }
         else {
             resultParagraph.textContent = "有効な数値を入力してください";

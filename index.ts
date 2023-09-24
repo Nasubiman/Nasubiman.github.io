@@ -2,15 +2,29 @@
 document.addEventListener("DOMContentLoaded", () => {
     const num1Input = document.getElementById("num1") as HTMLInputElement;
     const num2Input = document.getElementById("num2") as HTMLInputElement;
-    const calculateButton = document.getElementById("calculateButton");
+    const addButton = document.getElementById("addButton");
+    const multiButton = document.getElementById("multiButton");
     const resultParagraph = document.getElementById("result");
 
-    calculateButton?.addEventListener("click", () => {
+    addButton?.addEventListener("click", () => {
         const num1 = parseFloat(num1Input.value);
         const num2 = parseFloat(num2Input.value);
 
         if (!isNaN(num1) && !isNaN(num2)) {
             const sum = num1 + num2;
+            resultParagraph.textContent = `結果あああ: ${sum}`;
+        } else {
+            resultParagraph.textContent = "有効な数値を入力してください";
+        }
+    });
+
+
+    multiButton?.addEventListener("click", () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+
+        if (!isNaN(num1) && !isNaN(num2)) {
+            const sum = num1 * num2;
             resultParagraph.textContent = `結果あああ: ${sum}`;
         } else {
             resultParagraph.textContent = "有効な数値を入力してください";
