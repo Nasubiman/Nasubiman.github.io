@@ -24,12 +24,12 @@
     +
     <input type="number" id="num2" placeholder="数値2">
     
-    <button onclick="addNumbers()">計算</button>
+    <button id = "calculateButton">計算</button>
 
     <p id="result">結果: </p>
 
     <!-- 新しいJavaScriptファイルを読み込む -->
-    <script src="Script1.js"></script>
+    <script src="Script1.ts"></script>
 
 
     <h1>引き算</h1>
@@ -41,20 +41,8 @@
     <button id = "calculateButton">計算</button>
     
     <p id="result">結果: </p>
-    
-    <script>
-        function subNumbers() {
-            // 入力された数値を取得
-            var num1 = parseFloat(document.getElementById("num3").value);
-            var num2 = parseFloat(document.getElementById("num4").value);
 
-            // 足し算を実行
-            var sum = num1 - num2;
-
-            // 結果を表示
-            document.getElementById("result").textContent = "結果: " + sum;
-        }
-    </script>
+    <script src="Script1.ts"></script>
     
 
     <div class="cate_bar">
