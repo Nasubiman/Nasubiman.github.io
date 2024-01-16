@@ -18,11 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     tuples.push(tuple);
 
                     const li = document.createElement('li');
+                    let elementButton = document.createElement('Button');
+                    elementButton.id = "removeElementButton";
+                    elementButton.className = "removeElementButton";
+                    // elementButton.na
+                    elementButton.textContent = "remove" + elementCounter.toString();
+
                     li.id = "element" + elementCounter.toString();
 
                     // li.textContent = (document.getElementById('waterway') as HTMLInputElement).value;
-                    li.textContent = tuple[0] + "   水路 " +  tuple[1];
+                    li.textContent = tuple[0] + "   水路 " +  tuple[1] + "  ";
+                    li.appendChild(elementButton);
                     document.getElementById('myList')!.appendChild(li);
+                    // document.getElementById("myList")!.appendChild(elementButton);
                     (document.getElementById('playerName') as HTMLInputElement).value = '';
                     (document.getElementById('waterway') as HTMLInputElement).value = '';
                     elementCounter++;

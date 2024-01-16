@@ -13,10 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     var tuple = [playerName.value, parseInt(listInput.value)];
                     tuples.push(tuple);
                     var li = document.createElement('li');
+                    var elementButton = document.createElement('Button');
+                    elementButton.id = "removeElementButton";
+                    elementButton.className = "removeElementButton";
+                    // elementButton.na
+                    elementButton.textContent = "remove" + elementCounter.toString();
                     li.id = "element" + elementCounter.toString();
                     // li.textContent = (document.getElementById('waterway') as HTMLInputElement).value;
-                    li.textContent = tuple[0] + "   水路 " + tuple[1];
+                    li.textContent = tuple[0] + "   水路 " + tuple[1] + "  ";
+                    li.appendChild(elementButton);
                     document.getElementById('myList').appendChild(li);
+                    // document.getElementById("myList")!.appendChild(elementButton);
                     document.getElementById('playerName').value = '';
                     document.getElementById('waterway').value = '';
                     elementCounter++;
@@ -24,14 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case "removeElement":
                 (_a = document.getElementById("element1")) === null || _a === void 0 ? void 0 : _a.remove();
-                // if(removeElement)
-                // {
-                //     // removeElement.remove();
-                //     // removeElement.parentNode?.removeChild(removeElement);
-                //     for(let i = 0; i < elementCounter; i++)
-                //     {
-                //     }
-                // }
                 elementCounter--;
                 break;
         }
