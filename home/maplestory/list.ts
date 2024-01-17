@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 li.id = "element" + elementCounter.toString();
 
-                li.textContent = tuple[0] + " ".repeat(13 - tuple[0].length) + "水路 " + tuple[1] + " ".repeat(6 - tuple[1].toString().length);
+                li.appendChild(document.createTextNode(tuple[0]));
+                li.appendChild(document.createTextNode(" ".repeat(13 - tuple[0].length) + "水路 "));
+                li.appendChild(document.createTextNode(tuple[1].toString()));
+                li.appendChild(document.createTextNode(" ".repeat(6 - tuple[1].toString().length)));
 
 
                 li.appendChild(changeStatusButton);
@@ -52,18 +55,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         removeElement(element_id: number)
         {
-            document.getElementById("element" + element_id)?.remove();
+            document.getElementById("element" + element_id)!.remove();
         }
 
         changeStatus(element_id: number)
         {
-            if (document.getElementById("element" + element_id)!.childNodes[1].textContent === "メンバーへ") {
+            if (document.getElementById("element" + element_id)!.childNodes[4].textContent === "メンバーへ") {
                 document.getElementById('memberList')!.insertBefore(document.getElementById("element" + element_id)!, null);
-                document.getElementById("element" + element_id)!.childNodes[1].textContent = "ベンチへ";
+                document.getElementById("element" + element_id)!.childNodes[4].textContent = "ベンチへ";
 
-            } else if (document.getElementById("element" + element_id)!.childNodes[1].textContent === "ベンチへ") {
+            } else if (document.getElementById("element" + element_id)!.childNodes[4].textContent === "ベンチへ") {
                 document.getElementById('benchList')!.insertBefore(document.getElementById("element" + element_id)!, null);
-                document.getElementById("element" + element_id)!.childNodes[1].textContent = "メンバーへ";
+                document.getElementById("element" + element_id)!.childNodes[4].textContent = "メンバーへ";
 
             }
 
