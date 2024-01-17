@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
             case "removeElement":
                 document.getElementById("element1")?.remove();
+                document.getElementById("element1")?.parentNode?.children[1].remove();
                 elementCounter--;
             
                 break;
