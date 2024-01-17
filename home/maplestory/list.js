@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var myButton = document.getElementById("myButton");
-    var removeElementButton = document.getElementById("removeElementButton");
+    var addElementButton = document.getElementById("addElementButton");
     var listInput = document.getElementById('waterway');
     var playerName = document.getElementById('playerName');
     var elementCounter = 0;
@@ -17,14 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     var tuple = [playerName.value, parseInt(listInput.value)];
                     tuples.push(tuple);
                     var li = document.createElement('li');
-                    var elementButton = document.createElement('Button');
                     var currentElementCounter_1 = elementCounter;
+                    var elementButton = document.createElement('Button');
+                    var changeStatusButton = document.createElement('Button');
                     elementButton.addEventListener("click", function () { return listControl("removeElement", currentElementCounter_1); });
-                    elementButton.textContent = "remove" + elementCounter.toString();
+                    changeStatusButton.addEventListener("click", function () { return listControl("changeStatus", currentElementCounter_1); });
+                    elementButton.textContent = "削除";
+                    changeStatusButton.textContent = "ベンチへ";
                     li.id = "element" + elementCounter.toString();
-                    // li.textContent = (document.getElementById('waterway') as HTMLInputElement).value;
                     li.textContent = tuple[0] + "   水路 " + tuple[1] + "  ";
                     li.appendChild(elementButton);
+                    li.appendChild(document.createTextNode(" "));
+                    li.appendChild(changeStatusButton);
                     document.getElementById('memberList').appendChild(li);
                     document.getElementById('playerName').value = '';
                     document.getElementById('waterway').value = '';
@@ -34,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
             case "removeElement":
                 (_a = document.getElementById("element" + others[0])) === null || _a === void 0 ? void 0 : _a.remove();
                 break;
+            case "changeStatus":
+                document.getElementById('benchList').insertBefore(document.getElementById("element" + others[0]), document.getElementById("benchList").childNodes[1]);
+                document.getElementById("element" + others[0]).childNodes[2].textContent = "メンバーへ";
+                break;
         }
     }
-    myButton === null || myButton === void 0 ? void 0 : myButton.addEventListener("click", function () { return listControl("addElement"); });
+    addElementButton === null || addElementButton === void 0 ? void 0 : addElementButton.addEventListener("click", function () { return listControl("addElement"); });
 });
