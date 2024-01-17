@@ -17,19 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     tuples.push(tuple);
                     var li = document.createElement('li');
                     var currentElementCounter_1 = elementCounter;
-                    var elementButton = document.createElement('Button');
                     var changeStatusButton = document.createElement('Button');
-                    elementButton.addEventListener("click", function () { return listControl("removeElement", currentElementCounter_1); });
+                    var elementButton = document.createElement('Button');
                     changeStatusButton.addEventListener("click", function () { return listControl("changeStatus", currentElementCounter_1); });
-                    elementButton.textContent = "削除";
+                    elementButton.addEventListener("click", function () { return listControl("removeElement", currentElementCounter_1); });
                     changeStatusButton.textContent = "ベンチへ";
-                    elementButton.id = "elementButton" + elementCounter.toString();
+                    elementButton.textContent = "削除";
                     changeStatusButton.id = "changeStatusButton" + elementCounter.toString();
+                    elementButton.id = "elementButton" + elementCounter.toString();
                     li.id = "element" + elementCounter.toString();
                     li.textContent = tuple[0] + "   水路 " + tuple[1] + "  ";
-                    li.appendChild(elementButton);
-                    li.appendChild(document.createTextNode(" "));
                     li.appendChild(changeStatusButton);
+                    li.appendChild(document.createTextNode(" "));
+                    li.appendChild(elementButton);
                     document.getElementById('memberList').appendChild(li);
                     document.getElementById('playerName').value = '';
                     document.getElementById('waterway').value = '';
@@ -40,16 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 (_a = document.getElementById("element" + others[0])) === null || _a === void 0 ? void 0 : _a.remove();
                 break;
             case "changeStatus":
-                if (document.getElementById("element" + others[0]).childNodes[3].textContent === "メンバーへ") {
-                    alert("メンバーへ");
+                if (document.getElementById("element" + others[0]).childNodes[1].textContent === "メンバーへ") {
                     document.getElementById('memberList').insertBefore(document.getElementById("element" + others[0]), null);
-                    document.getElementById("element" + others[0]).childNodes[3].textContent = "ベンチへ";
+                    document.getElementById("element" + others[0]).childNodes[1].textContent = "ベンチへ";
                     break;
                 }
-                else if (document.getElementById("element" + others[0]).childNodes[3].textContent === "ベンチへ") {
-                    alert("ベンチへ");
+                else if (document.getElementById("element" + others[0]).childNodes[1].textContent === "ベンチへ") {
                     document.getElementById('benchList').insertBefore(document.getElementById("element" + others[0]), null);
-                    document.getElementById("element" + others[0]).childNodes[3].textContent = "メンバーへ";
+                    document.getElementById("element" + others[0]).childNodes[1].textContent = "メンバーへ";
                     break;
                 }
                 break;
