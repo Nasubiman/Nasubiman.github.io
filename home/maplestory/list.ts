@@ -19,21 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const li = document.createElement('li');
                     let elementButton = document.createElement('Button');
-                    // elementButton.id = "removeElementButton";
-                    // elementButton.className = "removeElementButton";
 
                     const currentElementCounter = elementCounter;
                     elementButton.addEventListener("click", () => listControl("removeElement", currentElementCounter));
-                    // elementButton.na
-                    elementButton.textContent = "remove" + elementCounter.toString();
+                    elementButton.textContent = "削除";
 
                     li.id = "element" + elementCounter.toString();
 
-                    // li.textContent = (document.getElementById('waterway') as HTMLInputElement).value;
                     li.textContent = tuple[0] + "   水路 " +  tuple[1] + "  ";
                     li.appendChild(elementButton);
-                    document.getElementById('myList')!.appendChild(li);
-                    // document.getElementById("myList")!.appendChild(elementButton);
+                    document.getElementById('memberList')!.appendChild(li);
                     (document.getElementById('playerName') as HTMLInputElement).value = '';
                     (document.getElementById('waterway') as HTMLInputElement).value = '';
                     elementCounter++;
@@ -42,14 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
             case "removeElement":
                 document.getElementById("element" + others[0])?.remove();
 
-                // (document.getElementById("divButton") as HTMLInputElement).textContent = others[0].toString();
-                // alert(others[0].toString());
-                // document.getElementById("myList")?.children[0].remove();
-
-
-
-                // elementCounter--;
-            
                 break;
 
         }
@@ -57,6 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     myButton?.addEventListener("click", () => listControl("addElement"));
-    // removeElementButton?.addEventListener("click", () => listControl("removeElement"));
 
 });
