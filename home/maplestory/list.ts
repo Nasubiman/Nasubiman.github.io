@@ -23,14 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     let elementButton = document.createElement('Button');
                     let changeStatusButton = document.createElement('Button');
 
+
                     elementButton.addEventListener("click", () => listControl("removeElement", currentElementCounter));
                     changeStatusButton.addEventListener("click", () => listControl("changeStatus", currentElementCounter));
 
                     elementButton.textContent = "削除";
                     changeStatusButton.textContent = "ベンチへ";
 
-                    li.id = "element" + elementCounter.toString();
+                    elementButton.id = "elementButton" + elementCounter.toString();
+                    changeStatusButton.id = "changeStatusButton" + elementCounter.toString();
 
+                    li.id = "element" + elementCounter.toString();
+                    
                     li.textContent = tuple[0] + "   水路 " +  tuple[1] + "  ";
 
                     li.appendChild(elementButton);
@@ -47,8 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("element" + others[0])?.remove();
                 break;
             case "changeStatus":
-                document.getElementById('benchList')!.insertBefore(document.getElementById("element" + others[0])!, document.getElementById("benchList")!.childNodes[1]);
-                document.getElementById("element" + others[0])!.childNodes[2].textContent = "メンバーへ";
+                if(document.getElementById("element" + others[0])!.childNodes[3].textContent === "メンバーへ")
+                {
+                    alert("メンバーへ");
+                    document.getElementById('memberList')!.insertBefore(document.getElementById("element" + others[0])!, null);
+                    document.getElementById("element" + others[0])!.childNodes[3].textContent = "ベンチへ";
+                    break;
+                }else if(document.getElementById("element" + others[0])!.childNodes[3].textContent === "ベンチへ")
+                {
+                    alert("ベンチへ");
+                    document.getElementById('benchList')!.insertBefore(document.getElementById("element" + others[0])!, null);
+                    document.getElementById("element" + others[0])!.childNodes[3].textContent = "メンバーへ";
+                    break;
+                }
                 break;
 
         }

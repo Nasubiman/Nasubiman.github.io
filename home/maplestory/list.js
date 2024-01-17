@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     changeStatusButton.addEventListener("click", function () { return listControl("changeStatus", currentElementCounter_1); });
                     elementButton.textContent = "削除";
                     changeStatusButton.textContent = "ベンチへ";
+                    elementButton.id = "elementButton" + elementCounter.toString();
+                    changeStatusButton.id = "changeStatusButton" + elementCounter.toString();
                     li.id = "element" + elementCounter.toString();
                     li.textContent = tuple[0] + "   水路 " + tuple[1] + "  ";
                     li.appendChild(elementButton);
@@ -38,8 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 (_a = document.getElementById("element" + others[0])) === null || _a === void 0 ? void 0 : _a.remove();
                 break;
             case "changeStatus":
-                document.getElementById('benchList').insertBefore(document.getElementById("element" + others[0]), document.getElementById("benchList").childNodes[1]);
-                document.getElementById("element" + others[0]).childNodes[2].textContent = "メンバーへ";
+                if (document.getElementById("element" + others[0]).childNodes[3].textContent === "メンバーへ") {
+                    alert("メンバーへ");
+                    document.getElementById('memberList').insertBefore(document.getElementById("element" + others[0]), null);
+                    document.getElementById("element" + others[0]).childNodes[3].textContent = "ベンチへ";
+                    break;
+                }
+                else if (document.getElementById("element" + others[0]).childNodes[3].textContent === "ベンチへ") {
+                    alert("ベンチへ");
+                    document.getElementById('benchList').insertBefore(document.getElementById("element" + others[0]), null);
+                    document.getElementById("element" + others[0]).childNodes[3].textContent = "メンバーへ";
+                    break;
+                }
                 break;
         }
     }
