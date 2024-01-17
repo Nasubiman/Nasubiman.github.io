@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let tuples: [string, number][] = [];
 
-    function listControl(operation){
+    function listControl(operation, ...others){
 
         switch(operation){
             case "addElement":
@@ -19,8 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const li = document.createElement('li');
                     let elementButton = document.createElement('Button');
-                    elementButton.id = "removeElementButton";
-                    elementButton.className = "removeElementButton";
+                    // elementButton.id = "removeElementButton";
+                    // elementButton.className = "removeElementButton";
+
+                    const currentElementCounter = elementCounter;
+                    elementButton.addEventListener("click", () => listControl("removeElement", currentElementCounter));
                     // elementButton.na
                     elementButton.textContent = "remove" + elementCounter.toString();
 
@@ -37,9 +40,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 break;
             case "removeElement":
-                document.getElementById("element1")?.remove();
-                document.getElementById("element1")?.parentNode?.children[1].remove();
-                elementCounter--;
+                document.getElementById("element" + others[0])?.remove();
+
+                // (document.getElementById("divButton") as HTMLInputElement).textContent = others[0].toString();
+                // alert(others[0].toString());
+                // document.getElementById("myList")?.children[0].remove();
+
+
+
+                // elementCounter--;
             
                 break;
 
@@ -48,6 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     myButton?.addEventListener("click", () => listControl("addElement"));
-    removeElementButton?.addEventListener("click", () => listControl("removeElement"));
+    // removeElementButton?.addEventListener("click", () => listControl("removeElement"));
 
 });
