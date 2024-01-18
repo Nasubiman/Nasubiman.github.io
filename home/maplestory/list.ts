@@ -2,11 +2,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const addElementButton = document.getElementById("addElementButton");
+    const sortOutElementButton = document.getElementById("sortOutElementButton");
     const listInput = document.getElementById('waterway') as HTMLInputElement;
     const playerName = document.getElementById('playerName') as HTMLInputElement;
     let elementCounter = 0;
 
     let tuples: [string, number][] = [];
+
 
     class ListControl
     {
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 elementButton.id = "elementButton" + elementCounter.toString();
 
                 li.id = "element" + elementCounter.toString();
+
+                
 
                 li.appendChild(document.createTextNode(tuple[0]));
                 li.appendChild(document.createTextNode(" ".repeat(13 - tuple[0].length) + "水路 "));
@@ -69,12 +73,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("element" + element_id)!.childNodes[4].textContent = "メンバーへ";
 
             }
+        }
 
+        sortOutElement()
+        {
+            let teamListNode = document.getElementById("teamList");
+            let memberListNode = document.getElementById("memberList");
+            while(teamListNode?.firstChild)
+            {
+                teamListNode!.firstChild.remove;
+            }
+
+            for(let i = 0; i < (memberListNode!.childElementCount + 5) / 6; i++)
+            {
+                const ul = document.createElement("ul");
+                ul.id = i.toString();
+                teamListNode!.appendChild(ul)
+            }
+            document.getElementById("teamList")!.insertBefore(document.getElementById("memberList")!.children[1]!,null);
         }
     }
 
     const listControl = new ListControl;
 
     addElementButton?.addEventListener("click", () => listControl.addElement());
+    sortOutElementButton?.addEventListener("click", () => listControl.sortOutElement());
+    
 
 });
