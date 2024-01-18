@@ -44,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.appendChild(document.createTextNode(" ".repeat(13 - tuple[0].length) + "水路 "));
                 li.appendChild(document.createTextNode(tuple[1].toString()));
                 li.appendChild(document.createTextNode(" ".repeat(6 - tuple[1].toString().length)));
-
-
                 li.appendChild(changeStatusButton);
                 li.appendChild(document.createTextNode(" "));
                 li.appendChild(elementButton);
@@ -84,13 +82,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 teamListNode?.removeChild(teamListNode.firstChild);
             }
 
+            let ul;
+
             for(let i = 0; i < memberListNode!.childElementCount / 6; i++)
             {
-                const ul = document.createElement("ul");
-                ul.id = i.toString();
+                ul = document.createElement("ul");
+                ul.id = "team" + i.toString();
                 teamListNode!.appendChild(ul)
             }
-            // document.getElementById("teamList")!.insertBefore(document.getElementById("memberList")!.children[1]!,null);
+
+            let member_counter = memberListNode?.childElementCount;
+
+            let team_list_counter = 0;
+            for(let i = 0; i < member_counter!; i++)
+            {
+
+                let member_copy = memberListNode?.childNodes[i].cloneNode(true);
+
+                if(i % 6 == 0 && i != 0)
+                {
+                    team_list_counter++;
+                }
+
+                teamListNode?.childNodes[team_list_counter].appendChild(member_copy!);
+
+            }
+
         }
     }
 
