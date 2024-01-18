@@ -79,18 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             let teamListNode = document.getElementById("teamList");
             let memberListNode = document.getElementById("memberList");
-            while(teamListNode?.firstChild)
+            while((teamListNode?.firstChild))
             {
-                teamListNode!.firstChild.remove;
+                teamListNode?.removeChild(teamListNode.firstChild);
             }
 
-            for(let i = 0; i < (memberListNode!.childElementCount + 5) / 6; i++)
+            for(let i = 0; i < memberListNode!.childElementCount / 6; i++)
             {
                 const ul = document.createElement("ul");
                 ul.id = i.toString();
                 teamListNode!.appendChild(ul)
             }
-            document.getElementById("teamList")!.insertBefore(document.getElementById("memberList")!.children[1]!,null);
+            // document.getElementById("teamList")!.insertBefore(document.getElementById("memberList")!.children[1]!,null);
         }
     }
 
