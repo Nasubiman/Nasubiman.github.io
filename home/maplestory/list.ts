@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         addElement()
         {
+            
             if (!isNaN(parseInt(listInput.value))) {
 
                 let tuple: [string, number] = [playerName.value, parseInt(listInput.value)];
-                // tuples.push(tuple);
 
                 const li = document.createElement('li');
 
@@ -78,24 +78,24 @@ document.addEventListener("DOMContentLoaded", () => {
             let tuples: [string, number][] = [];
             let teamListNode = document.getElementById("teamList");
             let memberListNode = document.getElementById("memberList");
+            let ul;
+            const member_num = memberListNode?.childElementCount;
             while((teamListNode?.firstChild))
             {
                 teamListNode?.removeChild(teamListNode.firstChild);
             }
 
-            let ul;
 
-            for(let i = 0; i < memberListNode!.childElementCount / 6; i++)
+            for(let i = 0; i < member_num! / 6; i++)
             {
                 ul = document.createElement("ul");
                 ul.id = "team" + i.toString();
                 teamListNode!.appendChild(ul)
             }
 
-            let member_counter = memberListNode?.childElementCount;
 
             let team_list_counter = 0;
-            for(let i = 0; i < member_counter!; i++)
+            for(let i = 0; i < member_num!; i++)
             {
 
                 let member_copy = memberListNode?.childNodes[i].cloneNode(true);
@@ -107,9 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     team_list_counter++;
                 }
 
-                // teamListNode?.childNodes[team_list_counter].appendChild(member_copy!);
+                let p = document.createElement("p");
+                p.textContent = tuple[0] + "  " + (tuple[1]).toString();
 
-                teamListNode?.childNodes[team_list_counter].appendChild(document.createTextNode(tuple[0] + "  " + (tuple[1]).toString()));
+                teamListNode?.childNodes[team_list_counter].appendChild(p);
 
             }
 
