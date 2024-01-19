@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerName = document.getElementById('playerName') as HTMLInputElement;
     let elementCounter = 0;
 
-    let tuples: [string, number][] = [];
 
 
     class ListControl
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isNaN(parseInt(listInput.value))) {
 
                 let tuple: [string, number] = [playerName.value, parseInt(listInput.value)];
-                tuples.push(tuple);
+                // tuples.push(tuple);
 
                 const li = document.createElement('li');
 
@@ -75,6 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         sortOutElement()
         {
+
+            let tuples: [string, number][] = [];
             let teamListNode = document.getElementById("teamList");
             let memberListNode = document.getElementById("memberList");
             while((teamListNode?.firstChild))
@@ -98,13 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
             {
 
                 let member_copy = memberListNode?.childNodes[i].cloneNode(true);
+                let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
+                tuples.push(tuple);
 
                 if(i % 6 == 0 && i != 0)
                 {
                     team_list_counter++;
                 }
 
-                teamListNode?.childNodes[team_list_counter].appendChild(member_copy!);
+                // teamListNode?.childNodes[team_list_counter].appendChild(member_copy!);
+
+                teamListNode?.childNodes[team_list_counter].appendChild(document.createTextNode(tuple[0] + "  " + (tuple[1]).toString()));
 
             }
 

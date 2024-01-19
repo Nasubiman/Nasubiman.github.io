@@ -5,14 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var listInput = document.getElementById('waterway');
     var playerName = document.getElementById('playerName');
     var elementCounter = 0;
-    var tuples = [];
     var ListControl = /** @class */ (function () {
         function ListControl() {
         }
         ListControl.prototype.addElement = function () {
             if (!isNaN(parseInt(listInput.value))) {
                 var tuple = [playerName.value, parseInt(listInput.value)];
-                tuples.push(tuple);
+                // tuples.push(tuple);
                 var li = document.createElement('li');
                 var currentElementCounter_1 = elementCounter;
                 var changeStatusButton = document.createElement('Button');
@@ -51,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
         ListControl.prototype.sortOutElement = function () {
+            var tuples = [];
             var teamListNode = document.getElementById("teamList");
             var memberListNode = document.getElementById("memberList");
             while ((teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.firstChild)) {
@@ -66,13 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
             var team_list_counter = 0;
             for (var i = 0; i < member_counter; i++) {
                 var member_copy = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childNodes[i].cloneNode(true);
+                var tuple = [member_copy.childNodes[0].textContent, parseInt(member_copy.childNodes[2].textContent)];
+                tuples.push(tuple);
                 if (i % 6 == 0 && i != 0) {
                     team_list_counter++;
                 }
-                teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.childNodes[team_list_counter].appendChild(member_copy);
-                // ul.appendChild(member_copy!);
+                // teamListNode?.childNodes[team_list_counter].appendChild(member_copy!);
+                teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.childNodes[team_list_counter].appendChild(document.createTextNode(tuple[0] + "  " + (tuple[1]).toString()));
             }
-            // document.getElementById("teamList")!.insertBefore(document.getElementById("memberList")!.children[1]!,null);
         };
         return ListControl;
     }());
