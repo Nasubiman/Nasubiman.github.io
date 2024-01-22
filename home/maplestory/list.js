@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var sortOutElementButton = document.getElementById("sortOutElementButton");
     var listInput = document.getElementById('waterway');
     var playerName = document.getElementById('playerName');
+    var boss_waterway = document.getElementById("boss_waterway");
     var elementCounter = 0;
     var ListControl = /** @class */ (function () {
         function ListControl() {
@@ -54,28 +55,24 @@ document.addEventListener("DOMContentLoaded", function () {
             var memberListNode = document.getElementById("memberList");
             var ul;
             var member_num = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childElementCount;
-            while ((teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.firstChild)) {
-                teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.removeChild(teamListNode.firstChild);
-            }
-            for (var i = 0; i < member_num / 6; i++) {
-                ul = document.createElement("ul");
-                ul.id = "team" + i.toString();
-                teamListNode.appendChild(ul);
-            }
             var team_list_counter = 0;
             for (var i = 0; i < member_num; i++) {
                 var member_copy = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childNodes[i].cloneNode(true);
                 var tuple = [member_copy.childNodes[0].textContent, parseInt(member_copy.childNodes[2].textContent)];
                 tuples.push(tuple);
-                // if(i % 6 == 0 && i != 0)
-                // {
-                //     team_list_counter++;
-                // }
-                // let p = document.createElement("p");
-                // p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
-                // teamListNode?.childNodes[team_list_counter].appendChild(p);
+            }
+            var sum = tuples.reduce(function (total, tuple) { return total + tuple[1]; }, 0);
+            var team_num = Math.min(sum / parseInt(boss_waterway.textContent), member_num);
+            while ((teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.firstChild)) {
+                teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.removeChild(teamListNode.firstChild);
+            }
+            for (var i = 0; i < team_num; i++) {
+                ul = document.createElement("ul");
+                ul.id = "team" + i.toString();
+                teamListNode.appendChild(ul);
             }
             tuples.sort(function (a, b) { return b[1] - a[1]; });
+            // let boss_waterway = parseInt(document.getElementById("boss_waterway")?.textContent?.toString()!);
             for (var i = 0; i < member_num; i++) {
                 if (i % 6 == 0 && i != 0) {
                     team_list_counter++;

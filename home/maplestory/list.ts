@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sortOutElementButton = document.getElementById("sortOutElementButton");
     const listInput = document.getElementById('waterway') as HTMLInputElement;
     const playerName = document.getElementById('playerName') as HTMLInputElement;
+    const boss_waterway = document.getElementById("boss_waterway");
     let elementCounter = 0;
 
 
@@ -80,13 +81,28 @@ document.addEventListener("DOMContentLoaded", () => {
             let memberListNode = document.getElementById("memberList");
             let ul;
             const member_num = memberListNode?.childElementCount;
+
+            let team_list_counter = 0;
+            for (let i = 0; i < member_num!; i++) {
+
+                let member_copy = memberListNode?.childNodes[i].cloneNode(true);
+                let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
+                tuples.push(tuple);
+            }
+
+            let sum = tuples.reduce((total, tuple) => total + tuple[1], 0);
+
+
+            let team_num = Math.min(sum / parseInt(boss_waterway!.textContent!) , member_num!);
+
+
             while((teamListNode?.firstChild))
             {
                 teamListNode?.removeChild(teamListNode.firstChild);
             }
 
 
-            for(let i = 0; i < member_num! / 6; i++)
+            for(let i = 0; i < team_num; i++)
             {
                 ul = document.createElement("ul");
                 ul.id = "team" + i.toString();
@@ -94,17 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            let team_list_counter = 0;
-            for(let i = 0; i < member_num!; i++)
-            {
 
-                let member_copy = memberListNode?.childNodes[i].cloneNode(true);
-                let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
-                tuples.push(tuple);
-
-            }
 
             tuples.sort((a, b) => b[1] - a[1]);
+
+
+            // let boss_waterway = parseInt(document.getElementById("boss_waterway")?.textContent?.toString()!);
 
             for (let i = 0; i < member_num!; i++) {
 
