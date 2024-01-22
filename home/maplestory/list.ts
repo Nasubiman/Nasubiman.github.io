@@ -82,28 +82,24 @@ document.addEventListener("DOMContentLoaded", () => {
             let ul;
             const member_num = memberListNode?.childElementCount;
 
-            let team_list_counter = 0;
             for (let i = 0; i < member_num!; i++) {
-
                 let member_copy = memberListNode?.childNodes[i].cloneNode(true);
                 let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
                 tuples.push(tuple);
             }
 
-
             tuples.sort((a, b) => b[1] - a[1]);
 
             let sum = tuples.reduce((total, tuple) => total + tuple[1], 0);
 
+            
 
-            let team_num = Math.min(sum / parseInt(boss_waterway!.textContent!) , member_num!);
-
+            let team_num = Math.max(Math.min(sum / parseInt(boss_waterway!.textContent!) , member_num!) , 1);
 
             while((teamListNode?.firstChild))
             {
                 teamListNode?.removeChild(teamListNode.firstChild);
             }
-
 
             let team_boss_waterway_sum: number[] = new Array(team_num);
             team_boss_waterway_sum.fill(0);
@@ -118,12 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             for (let i = 0; i < member_num!; i++) {
 
-                if (i % 6 == 0 && i != 0) {
-                    team_list_counter++;
-                }
-
                 let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
-
 
                 let p = document.createElement("p");
                 p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();

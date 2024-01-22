@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var memberListNode = document.getElementById("memberList");
             var ul;
             var member_num = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childElementCount;
-            var team_list_counter = 0;
             for (var i = 0; i < member_num; i++) {
                 var member_copy = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childNodes[i].cloneNode(true);
                 var tuple = [member_copy.childNodes[0].textContent, parseInt(member_copy.childNodes[2].textContent)];
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             tuples.sort(function (a, b) { return b[1] - a[1]; });
             var sum = tuples.reduce(function (total, tuple) { return total + tuple[1]; }, 0);
-            var team_num = Math.min(sum / parseInt(boss_waterway.textContent), member_num);
+            var team_num = Math.max(Math.min(sum / parseInt(boss_waterway.textContent), member_num), 1);
             while ((teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.firstChild)) {
                 teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.removeChild(teamListNode.firstChild);
             }
@@ -76,9 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 teamListNode.appendChild(ul);
             }
             for (var i = 0; i < member_num; i++) {
-                if (i % 6 == 0 && i != 0) {
-                    team_list_counter++;
-                }
                 var minIndex = team_boss_waterway_sum.indexOf(Math.min.apply(Math, team_boss_waterway_sum));
                 var p = document.createElement("p");
                 p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
