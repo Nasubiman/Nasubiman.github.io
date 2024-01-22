@@ -102,13 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
                 tuples.push(tuple);
 
-                if(i % 6 == 0 && i != 0)
-                {
+            }
+
+            tuples.sort((a, b) => b[1] - a[1]);
+
+            for (let i = 0; i < member_num!; i++) {
+
+                if (i % 6 == 0 && i != 0) {
                     team_list_counter++;
                 }
 
                 let p = document.createElement("p");
-                p.textContent = tuple[0] + "  " + (tuple[1]).toString();
+                p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
 
                 teamListNode?.childNodes[team_list_counter].appendChild(p);
 

@@ -67,11 +67,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 var member_copy = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childNodes[i].cloneNode(true);
                 var tuple = [member_copy.childNodes[0].textContent, parseInt(member_copy.childNodes[2].textContent)];
                 tuples.push(tuple);
+                // if(i % 6 == 0 && i != 0)
+                // {
+                //     team_list_counter++;
+                // }
+                // let p = document.createElement("p");
+                // p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
+                // teamListNode?.childNodes[team_list_counter].appendChild(p);
+            }
+            tuples.sort(function (a, b) { return b[1] - a[1]; });
+            for (var i = 0; i < member_num; i++) {
                 if (i % 6 == 0 && i != 0) {
                     team_list_counter++;
                 }
                 var p = document.createElement("p");
-                p.textContent = tuple[0] + "  " + (tuple[1]).toString();
+                p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
                 teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.childNodes[team_list_counter].appendChild(p);
             }
         };
