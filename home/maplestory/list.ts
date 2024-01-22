@@ -92,20 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let sum = tuples.reduce((total, tuple) => total + tuple[1], 0);
 
-            
-
-            let team_num = Math.max(Math.min(sum / parseInt(boss_waterway!.textContent!) , member_num!) , 1);
+            let  team_num: number = Math.max(Math.min( sum / parseInt(boss_waterway!.textContent!) , member_num!) , 1) | 0;
 
             while((teamListNode?.firstChild))
             {
                 teamListNode?.removeChild(teamListNode.firstChild);
             }
 
+            alert(team_num);
+
             let team_boss_waterway_sum: number[] = new Array(team_num);
             team_boss_waterway_sum.fill(0);
-            //.fill(0);
-            for(let i = 0; i < team_num; i++)
-            {
+
+            for (let i = 0; i < team_num; i++) {
                 ul = document.createElement("ul");
                 ul.id = "team" + i.toString();
                 teamListNode!.appendChild(ul)

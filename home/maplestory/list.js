@@ -62,13 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             tuples.sort(function (a, b) { return b[1] - a[1]; });
             var sum = tuples.reduce(function (total, tuple) { return total + tuple[1]; }, 0);
-            var team_num = Math.max(Math.min(sum / parseInt(boss_waterway.textContent), member_num), 1);
+            var team_num = Math.max(Math.min(sum / parseInt(boss_waterway.textContent), member_num), 1) | 0;
             while ((teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.firstChild)) {
                 teamListNode === null || teamListNode === void 0 ? void 0 : teamListNode.removeChild(teamListNode.firstChild);
             }
+            alert(team_num);
             var team_boss_waterway_sum = new Array(team_num);
             team_boss_waterway_sum.fill(0);
-            //.fill(0);
             for (var i = 0; i < team_num; i++) {
                 ul = document.createElement("ul");
                 ul.id = "team" + i.toString();
