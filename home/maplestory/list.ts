@@ -105,7 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            // let team_boss_waterway_sum: number[] = new Array(team_num).fill(0);
+            let team_boss_waterway_sum: number[] = new Array(team_num);
+            team_boss_waterway_sum.fill(0);
+            //.fill(0);
             for(let i = 0; i < team_num; i++)
             {
                 ul = document.createElement("ul");
@@ -120,14 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     team_list_counter++;
                 }
 
-                // let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
+                let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
 
 
                 let p = document.createElement("p");
                 p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
-                // team_boss_waterway_sum[minIndex] += tuples[i][1];
+                team_boss_waterway_sum[minIndex] += tuples[i][1];
 
-                teamListNode?.childNodes[team_list_counter].appendChild(p);
+                teamListNode?.childNodes[minIndex].appendChild(p);
 
             }
 
