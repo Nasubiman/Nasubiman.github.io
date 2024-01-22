@@ -90,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 tuples.push(tuple);
             }
 
+
+            tuples.sort((a, b) => b[1] - a[1]);
+
             let sum = tuples.reduce((total, tuple) => total + tuple[1], 0);
 
 
@@ -102,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
+            // let team_boss_waterway_sum: number[] = new Array(team_num).fill(0);
             for(let i = 0; i < team_num; i++)
             {
                 ul = document.createElement("ul");
@@ -110,21 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-
-
-            tuples.sort((a, b) => b[1] - a[1]);
-
-
-            // let boss_waterway = parseInt(document.getElementById("boss_waterway")?.textContent?.toString()!);
-
             for (let i = 0; i < member_num!; i++) {
 
                 if (i % 6 == 0 && i != 0) {
                     team_list_counter++;
                 }
 
+                // let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
+
+
                 let p = document.createElement("p");
                 p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
+                // team_boss_waterway_sum[minIndex] += tuples[i][1];
 
                 teamListNode?.childNodes[team_list_counter].appendChild(p);
 
