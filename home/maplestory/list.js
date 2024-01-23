@@ -1,4 +1,4 @@
-/// <reference lib="es2015" />
+/// <reference lib="es2017" />
 document.addEventListener("DOMContentLoaded", function () {
     var addElementButton = document.getElementById("addElementButton");
     var sortOutElementButton = document.getElementById("sortOutElementButton");
@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 elementButton.id = "elementButton" + elementCounter.toString();
                 li.id = "element" + elementCounter.toString();
                 li.appendChild(document.createTextNode(tuple[0]));
-                li.appendChild(document.createTextNode(" ".repeat(13 - tuple[0].length) + "水路 "));
+                li.appendChild(document.createTextNode(" 水路 "));
                 li.appendChild(document.createTextNode(tuple[1].toString()));
-                li.appendChild(document.createTextNode(" ".repeat(6 - tuple[1].toString().length)));
+                li.appendChild(document.createTextNode(" "));
                 li.appendChild(changeStatusButton);
                 li.appendChild(document.createTextNode(" "));
                 li.appendChild(elementButton);
@@ -90,6 +90,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 team_num--;
             }
+            // for (let i = 0; i < team_num; i++) {
+            //     ul = document.createElement("ul");
+            //     ul.id = "team" + i.toString();
+            //     teamListNode!.appendChild(ul)
+            // }
+            // for (let i = 0; i < member_num!; i++) {
+            //     // let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
+            //     let p = document.createElement("p");
+            //     p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
+            //     // team_boss_waterway_sum[minIndex] += tuples[i][1];
+            //     teamListNode?.childNodes[minIndex].appendChild(p);
+            // }
         };
         return ListControl;
     }());
