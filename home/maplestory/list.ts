@@ -73,6 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        clearTeam()
+        {
+
+            let teamListNode = document.getElementById("teamList");
+            while((teamListNode?.firstChild))
+            {
+                teamListNode?.removeChild(teamListNode.firstChild);
+            }
+        }
+
         sortOutElement()
         {
 
@@ -94,34 +104,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let  team_num: number = Math.max(Math.min( sum / parseInt(boss_waterway!.textContent!) , member_num!) , 1) | 0;
 
-            while((teamListNode?.firstChild))
+            while(true)
             {
-                teamListNode?.removeChild(teamListNode.firstChild);
+                this.clearTeam();
+
+                let team_boss_waterway_sum: number[] = new Array(team_num);
+                team_boss_waterway_sum.fill(0);
+
+
+
+                for (let i = 0; i < team_num; i++) {
+                    ul = document.createElement("ul");
+                    ul.id = "team" + i.toString();
+                    teamListNode!.appendChild(ul)
+                }
+
+
+                for (let i = 0; i < member_num!; i++) {
+
+                    let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
+
+                    let p = document.createElement("p");
+                    p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
+                    team_boss_waterway_sum[minIndex] += tuples[i][1];
+
+                    teamListNode?.childNodes[minIndex].appendChild(p);
+
+                }
+
+                if (team_num <= 1 || Math.min(...team_boss_waterway_sum) >= parseInt(boss_waterway!.textContent!))
+                {
+                    break;
+                }
+
+                team_num--;
             }
 
-            alert(team_num);
-
-            let team_boss_waterway_sum: number[] = new Array(team_num);
-            team_boss_waterway_sum.fill(0);
-
-            for (let i = 0; i < team_num; i++) {
-                ul = document.createElement("ul");
-                ul.id = "team" + i.toString();
-                teamListNode!.appendChild(ul)
-            }
-
-
-            for (let i = 0; i < member_num!; i++) {
-
-                let minIndex = team_boss_waterway_sum.indexOf(Math.min(...team_boss_waterway_sum));
-
-                let p = document.createElement("p");
-                p.textContent = tuples[i][0] + "  " + (tuples[i][1]).toString();
-                team_boss_waterway_sum[minIndex] += tuples[i][1];
-
-                teamListNode?.childNodes[minIndex].appendChild(p);
-
-            }
 
         }
     }
