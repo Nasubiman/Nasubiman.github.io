@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sortOutElementButton = document.getElementById("sortOutElementButton");
     const listInput = document.getElementById('waterway') as HTMLInputElement;
     const playerName = document.getElementById('playerName') as HTMLInputElement;
+    const member_table = document.getElementById("member_table") as HTMLTableElement;
+    const bench_table = document.getElementById("bench_table") as HTMLTableElement;
     const boss_waterway = document.getElementById("boss_waterway");
     let elementCounter = 0;
 
@@ -47,6 +49,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.appendChild(document.createTextNode(" "));
                 li.appendChild(elementButton);
 
+                let newRow = member_table.insertRow();
+
+                newRow.id = "element_" + elementCounter.toString();
+
+                let newCell = newRow.insertCell();
+                newCell.textContent = tuple[0];
+                newCell = newRow.insertCell();
+                newCell.textContent = tuple[1].toString();
+                newCell = newRow.insertCell();
+
+                let btn = document.createElement('button');
+                btn.textContent = '削除';
+
+                // 削除ボタンがクリックされたときのイベントリスナーを追加
+                btn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    // ボタンが属している行を削除
+                    let row = (event.target! as HTMLElement).parentElement!.parentElement;
+                    member_table.deleteRow(newRow.rowIndex);
+                });
+                newCell.appendChild(btn);
+
+
                 document.getElementById('memberList')!.appendChild(li);
                 (document.getElementById('playerName') as HTMLInputElement).value = '';
                 (document.getElementById('waterway') as HTMLInputElement).value = '';
@@ -70,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("element" + element_id)!.childNodes[4].textContent = "メンバーへ";
 
             }
+
+            
         }
 
         clearTeam()
@@ -90,10 +117,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let ul;
             const member_num = memberListNode?.childElementCount;
 
-            for (let i = 0; i < member_num!; i++) {
-                let member_copy = memberListNode?.childNodes[i].cloneNode(true);
-                let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
-                tuples.push(tuple);
+            // for (let i = 0; i < member_num!; i++) {
+            //     let member_copy = memberListNode?.childNodes[i].cloneNode(true);
+            //     let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
+            //     tuples.push(tuple);
+            // }
+
+            // alert(member_table.rows[0].cells[0].textContent!)
+
+            for(let i = 1; i < member_table.rows.length; i++)
+            {
+                let tuple: [string, number] = [member_table.rows[i].cells[0].textContent!, parseInt(member_table.rows[i].cells[1].textContent!)];
+                    tuples.push(tuple);
             }
 
             tuples.sort((a, b) => b[1] - a[1]);
@@ -101,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let sum = tuples.reduce((total, tuple) => total + tuple[1], 0);
 
             let  team_num: number = Math.max(Math.min( sum / parseInt(boss_waterway!.textContent!) , member_num!) , 1) | 0;
+            let min_team_num = (((member_num! - 1) / 6) + 1) | 0;
 
             while(true)
             {
@@ -126,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 }
 
-                if (team_num <= 1 || Math.min(...team_boss_waterway_sum) >= parseInt(boss_waterway!.textContent!))
+                if (team_num <= min_team_num || Math.min(...team_boss_waterway_sum) >= parseInt(boss_waterway!.textContent!))
                 {
                     break;
                 }
