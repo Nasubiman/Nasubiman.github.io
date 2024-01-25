@@ -19,10 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isNaN(parseInt(waterway_input.value))) {
 
                 let tuple: [string, number] = [playerName.value, parseInt(waterway_input.value)];
-
-
                 let newRow = member_table.insertRow();
-
 
                 let newCell = newRow.insertCell();
                 newCell.textContent = tuple[0];
@@ -37,15 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 change_status_button.textContent = 'ベンチへ';
 
                 this.removeTableElement(btn);
-                
-
                 this.changeElementStatus(change_status_button);
-                // btn.addEventListener('click', (event) => {
-                //     event.preventDefault();
-                //     // ボタンが属している行を削除
-                //     let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
-                //     member_table.deleteRow(row!.rowIndex);
-                // });
                 newCell.textContent = "hoge";
                 newCell = newRow.insertCell();
 
