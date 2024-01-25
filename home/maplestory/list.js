@@ -14,24 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ListControl.prototype.addElement = function () {
             if (!isNaN(parseInt(listInput.value))) {
                 var tuple = [playerName.value, parseInt(listInput.value)];
-                var li = document.createElement('li');
-                var currentElementCounter_1 = elementCounter;
-                var changeStatusButton = document.createElement('Button');
-                var elementButton = document.createElement('Button');
-                changeStatusButton.addEventListener("click", function () { return listControl.changeStatus(currentElementCounter_1); });
-                elementButton.addEventListener("click", function () { return listControl.removeElement(currentElementCounter_1); });
-                changeStatusButton.textContent = "ベンチへ";
-                elementButton.textContent = "削除";
-                changeStatusButton.id = "changeStatusButton" + elementCounter.toString();
-                elementButton.id = "elementButton" + elementCounter.toString();
-                li.id = "element" + elementCounter.toString();
-                li.appendChild(document.createTextNode(tuple[0]));
-                li.appendChild(document.createTextNode(" 水路 "));
-                li.appendChild(document.createTextNode(tuple[1].toString()));
-                li.appendChild(document.createTextNode(" "));
-                li.appendChild(changeStatusButton);
-                li.appendChild(document.createTextNode(" "));
-                li.appendChild(elementButton);
                 var newRow = member_table.insertRow();
                 newRow.id = "element_" + elementCounter.toString();
                 var newCell = newRow.insertCell();
@@ -57,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 newCell.appendChild(btn);
                 newCell = newRow.insertCell();
                 newCell.appendChild(change_status_button);
-                document.getElementById('memberList').appendChild(li);
                 document.getElementById('playerName').value = '';
                 document.getElementById('waterway').value = '';
                 elementCounter++;
@@ -82,19 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 var table = (_a = row.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
                 table.deleteRow(row.rowIndex);
             });
-        };
-        ListControl.prototype.removeElement = function (element_id) {
-            document.getElementById("element" + element_id).remove();
-        };
-        ListControl.prototype.changeStatus = function (element_id) {
-            if (document.getElementById("element" + element_id).childNodes[4].textContent === "メンバーへ") {
-                document.getElementById('memberList').insertBefore(document.getElementById("element" + element_id), null);
-                document.getElementById("element" + element_id).childNodes[4].textContent = "ベンチへ";
-            }
-            else if (document.getElementById("element" + element_id).childNodes[4].textContent === "ベンチへ") {
-                document.getElementById('benchList').insertBefore(document.getElementById("element" + element_id), null);
-                document.getElementById("element" + element_id).childNodes[4].textContent = "メンバーへ";
-            }
         };
         ListControl.prototype.clearTeam = function () {
             var teamListNode = document.getElementById("teamList");
