@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const member_table = document.getElementById("member_table") as HTMLTableElement;
     const bench_table = document.getElementById("bench_table") as HTMLTableElement;
     const boss_waterway = document.getElementById("boss_waterway");
-    let elementCounter = 0;
 
 
 
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let newRow = member_table.insertRow();
 
-                newRow.id = "element_" + elementCounter.toString();
 
                 let newCell = newRow.insertCell();
                 newCell.textContent = tuple[0];
@@ -38,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 let change_status_button = document.createElement('button');
                 change_status_button.textContent = 'ベンチへ';
 
-                // 削除ボタンがクリックされたときのイベントリスナーを追加
                 this.removeTableElement(btn);
                 
 
@@ -60,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 (document.getElementById('playerName') as HTMLInputElement).value = '';
                 (document.getElementById('waterway') as HTMLInputElement).value = '';
-                elementCounter++;
             }
         }
 

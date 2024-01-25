@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var member_table = document.getElementById("member_table");
     var bench_table = document.getElementById("bench_table");
     var boss_waterway = document.getElementById("boss_waterway");
-    var elementCounter = 0;
     var ListControl = /** @class */ (function () {
         function ListControl() {
         }
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isNaN(parseInt(listInput.value))) {
                 var tuple = [playerName.value, parseInt(listInput.value)];
                 var newRow = member_table.insertRow();
-                newRow.id = "element_" + elementCounter.toString();
                 var newCell = newRow.insertCell();
                 newCell.textContent = tuple[0];
                 newCell = newRow.insertCell();
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 btn.textContent = '削除';
                 var change_status_button = document.createElement('button');
                 change_status_button.textContent = 'ベンチへ';
-                // 削除ボタンがクリックされたときのイベントリスナーを追加
                 this.removeTableElement(btn);
                 this.changeElementStatus(change_status_button);
                 // btn.addEventListener('click', (event) => {
@@ -41,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 newCell.appendChild(change_status_button);
                 document.getElementById('playerName').value = '';
                 document.getElementById('waterway').value = '';
-                elementCounter++;
             }
         };
         ListControl.prototype.changeElementStatus = function (btn) {
