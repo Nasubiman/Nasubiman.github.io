@@ -2,15 +2,26 @@
     color: red;
 }
 
-.parent {
-    display: flex;
+.table {
+     table-layout: fixed;
+     width: 100%;
+ }
+
+th:nth-child(1) {
+    width: 150px;
 }
 
-.child {
-    color: #fff;
-    border: solid 1px #fff;
-    text-align: center;
-    line-height: 100px;
-    width: 100px;
-    height: 100px;
+th:nth-child(2) {
+    width: 60px;
+}
+
+th:nth-child(3) {
+    width: 40px;
+}
+th:nth-child(4) {
+    width: 42px;
+}
+
+th:nth-child(5) {
+    width: 70px;
 }

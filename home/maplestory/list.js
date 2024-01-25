@@ -32,28 +32,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 li.appendChild(changeStatusButton);
                 li.appendChild(document.createTextNode(" "));
                 li.appendChild(elementButton);
-                var newRow_1 = member_table.insertRow();
-                newRow_1.id = "element_" + elementCounter.toString();
-                var newCell = newRow_1.insertCell();
+                var newRow = member_table.insertRow();
+                newRow.id = "element_" + elementCounter.toString();
+                var newCell = newRow.insertCell();
                 newCell.textContent = tuple[0];
-                newCell = newRow_1.insertCell();
+                newCell = newRow.insertCell();
                 newCell.textContent = tuple[1].toString();
-                newCell = newRow_1.insertCell();
+                newCell = newRow.insertCell();
                 var btn = document.createElement('button');
                 btn.textContent = '削除';
+                var change_status_button = document.createElement('button');
+                change_status_button.textContent = 'ベンチへ';
                 // 削除ボタンがクリックされたときのイベントリスナーを追加
-                btn.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    // ボタンが属している行を削除
-                    var row = event.target.parentElement.parentElement;
-                    member_table.deleteRow(newRow_1.rowIndex);
-                });
+                this.removeTableElement(btn);
+                this.changeElementStatus(change_status_button);
+                // btn.addEventListener('click', (event) => {
+                //     event.preventDefault();
+                //     // ボタンが属している行を削除
+                //     let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
+                //     member_table.deleteRow(row!.rowIndex);
+                // });
+                newCell.textContent = "hoge";
+                newCell = newRow.insertCell();
                 newCell.appendChild(btn);
+                newCell = newRow.insertCell();
+                newCell.appendChild(change_status_button);
                 document.getElementById('memberList').appendChild(li);
                 document.getElementById('playerName').value = '';
                 document.getElementById('waterway').value = '';
                 elementCounter++;
             }
+        };
+        ListControl.prototype.changeElementStatus = function (btn) {
+            btn.addEventListener('click', function (event) {
+                var _a;
+                event.preventDefault();
+                var row = event.target.parentElement.parentElement;
+                var table = (_a = row.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
+                var after_table = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody");
+                after_table.insertBefore(row, null);
+            });
+        };
+        ListControl.prototype.removeTableElement = function (btn) {
+            btn.addEventListener('click', function (event) {
+                var _a;
+                event.preventDefault();
+                // ボタンが属している行を削除
+                var row = event.target.parentElement.parentElement;
+                var table = (_a = row.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
+                table.deleteRow(row.rowIndex);
+            });
         };
         ListControl.prototype.removeElement = function (element_id) {
             document.getElementById("element" + element_id).remove();

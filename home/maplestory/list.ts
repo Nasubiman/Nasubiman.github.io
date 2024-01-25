@@ -62,14 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 let btn = document.createElement('button');
                 btn.textContent = '削除';
 
+                let change_status_button = document.createElement('button');
+                change_status_button.textContent = 'ベンチへ';
+
                 // 削除ボタンがクリックされたときのイベントリスナーを追加
-                btn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    // ボタンが属している行を削除
-                    let row = (event.target! as HTMLElement).parentElement!.parentElement;
-                    member_table.deleteRow(newRow.rowIndex);
-                });
+                this.removeTableElement(btn);
+                
+
+                this.changeElementStatus(change_status_button);
+                // btn.addEventListener('click', (event) => {
+                //     event.preventDefault();
+                //     // ボタンが属している行を削除
+                //     let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
+                //     member_table.deleteRow(row!.rowIndex);
+                // });
+                newCell.textContent = "hoge";
+                newCell = newRow.insertCell();
+
                 newCell.appendChild(btn);
+
+                newCell = newRow.insertCell();
+                newCell.appendChild(change_status_button);
 
 
                 document.getElementById('memberList')!.appendChild(li);
@@ -77,6 +90,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 (document.getElementById('waterway') as HTMLInputElement).value = '';
                 elementCounter++;
             }
+        }
+
+        changeElementStatus(btn: HTMLButtonElement)
+        {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
+                let table = row.parentElement?.parentElement as HTMLTableElement;
+                let after_table = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody") as HTMLElement;
+                after_table.insertBefore(row!, null);
+
+            });
+        }
+
+        removeTableElement(btn: HTMLButtonElement)
+        {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                // ボタンが属している行を削除
+                let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
+                let table = row.parentElement?.parentElement as HTMLTableElement;
+                table.deleteRow(row!.rowIndex);
+            });
+
         }
 
         removeElement(element_id: number)
