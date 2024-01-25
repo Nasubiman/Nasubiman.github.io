@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     var addElementButton = document.getElementById("addElementButton");
     var sortOutElementButton = document.getElementById("sortOutElementButton");
-    var listInput = document.getElementById('waterway');
+    var waterway_input = document.getElementById('waterway');
     var playerName = document.getElementById('playerName');
     var member_table = document.getElementById("member_table");
     var bench_table = document.getElementById("bench_table");
@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
         function ListControl() {
         }
         ListControl.prototype.addElement = function () {
-            if (!isNaN(parseInt(listInput.value))) {
-                var tuple = [playerName.value, parseInt(listInput.value)];
+            if (!isNaN(parseInt(waterway_input.value))) {
+                var tuple = [playerName.value, parseInt(waterway_input.value)];
                 var newRow = member_table.insertRow();
                 var newCell = newRow.insertCell();
                 newCell.textContent = tuple[0];
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
                 var row = event.target.parentElement.parentElement;
                 var table = (_a = row.parentElement) === null || _a === void 0 ? void 0 : _a.parentElement;
-                var after_table = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody");
-                after_table.insertBefore(row, null);
+                var insert_tbody = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody");
+                insert_tbody.insertBefore(row, null);
             });
         };
         ListControl.prototype.removeTableElement = function (btn) {
@@ -69,15 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
         ListControl.prototype.sortOutElement = function () {
             var tuples = [];
             var teamListNode = document.getElementById("teamList");
-            var memberListNode = document.getElementById("memberList");
+            var tbody = document.getElementById("member_tbody");
             var ul;
-            var member_num = memberListNode === null || memberListNode === void 0 ? void 0 : memberListNode.childElementCount;
+            var member_num = tbody.rows.length;
+            alert(member_num === null || member_num === void 0 ? void 0 : member_num.toString());
             // for (let i = 0; i < member_num!; i++) {
             //     let member_copy = memberListNode?.childNodes[i].cloneNode(true);
             //     let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
             //     tuples.push(tuple);
             // }
-            // alert(member_table.rows[0].cells[0].textContent!)
             for (var i = 1; i < member_table.rows.length; i++) {
                 var tuple = [member_table.rows[i].cells[0].textContent, parseInt(member_table.rows[i].cells[1].textContent)];
                 tuples.push(tuple);

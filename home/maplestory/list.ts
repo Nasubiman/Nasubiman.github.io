@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const addElementButton = document.getElementById("addElementButton");
     const sortOutElementButton = document.getElementById("sortOutElementButton");
-    const listInput = document.getElementById('waterway') as HTMLInputElement;
+    const waterway_input = document.getElementById('waterway') as HTMLInputElement;
     const playerName = document.getElementById('playerName') as HTMLInputElement;
     const member_table = document.getElementById("member_table") as HTMLTableElement;
     const bench_table = document.getElementById("bench_table") as HTMLTableElement;
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
         addElement()
         {
             
-            if (!isNaN(parseInt(listInput.value))) {
+            if (!isNaN(parseInt(waterway_input.value))) {
 
-                let tuple: [string, number] = [playerName.value, parseInt(listInput.value)];
+                let tuple: [string, number] = [playerName.value, parseInt(waterway_input.value)];
 
 
                 let newRow = member_table.insertRow();
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let row = (event.target! as HTMLElement).parentElement!.parentElement as HTMLTableRowElement;
                 let table = row.parentElement?.parentElement as HTMLTableElement;
-                let after_table = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody") as HTMLElement;
-                after_table.insertBefore(row!, null);
+                let insert_tbody = document.getElementById(table.id == "member_table" ? "bench_tbody" : "member_tbody") as HTMLTableRowElement;
+                insert_tbody.insertBefore(row!, null);
 
             });
         }
@@ -100,17 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let tuples: [string, number][] = [];
             let teamListNode = document.getElementById("teamList");
-            let memberListNode = document.getElementById("memberList");
+            let tbody = document.getElementById("member_tbody") as HTMLTableSectionElement;
             let ul;
-            const member_num = memberListNode?.childElementCount;
+            const member_num = tbody.rows.length;
 
-            // for (let i = 0; i < member_num!; i++) {
-            //     let member_copy = memberListNode?.childNodes[i].cloneNode(true);
-            //     let tuple: [string, number] = [member_copy!.childNodes[0].textContent!, parseInt(member_copy!.childNodes[2].textContent!)];
-            //     tuples.push(tuple);
-            // }
 
-            // alert(member_table.rows[0].cells[0].textContent!)
 
             for(let i = 1; i < member_table.rows.length; i++)
             {
