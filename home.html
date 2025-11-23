@@ -1,16 +1,110 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="ja">
 
 <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
 
-    <h1>HelloWorld</h1>
+    <header>
+        <nav>
+            <a href="#" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <section class="hero">
+        <h1>Hello, I'm Nasubiman</h1>
+        <p>Student / Web Developer</p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    こんにちは！Web開発を学んでいる学生です。
+                    新しい技術に触れるのが好きで、日々コードを書いています。
+                    シンプルで使いやすいWebサイト作りを心がけています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5 fa-3x" style="color: #e34c26;"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt fa-3x" style="color: #264de4;"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js fa-3x" style="color: #f0db4f;"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-git-alt fa-3x" style="color: #f1502f;"></i>
+                <h3>Git</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project Title 1</h3>
+                    <p>プロジェクトの簡単な説明をここに書きます。使用した技術や工夫した点など。</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project Title 2</h3>
+                    <p>プロジェクトの簡単な説明をここに書きます。使用した技術や工夫した点など。</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project Title 3</h3>
+                    <p>プロジェクトの簡単な説明をここに書きます。使用した技術や工夫した点など。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div style="text-align: center;">
+            <p>お問い合わせはこちらまで</p>
+            <div class="social-links" style="margin-top: 20px;">
+                <a href="https://github.com/Nasubiman" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:example@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Nasubiman. All Rights Reserved.</p>
+    </footer>
 
 </body>
 
